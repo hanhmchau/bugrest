@@ -1,0 +1,18 @@
+@import "variables";
+
+#short-rest-hd {
+	.form-fields {
+		display: block;
+	}
+
+	.hit-dice-field {
+		label.denom {
+			min-width: 25px;
+			display: inline-block;
+		}
+
+		select {
+			width: 50px;
+		}
+	}
+}

@@ -1,0 +1,31 @@
+<form id="short-rest-hd" class="dialog-content" onsubmit="event.preventDefault();">
+    <p>{{ localize "DND5E.ShortRestHint" }}</p>
+    <div class="form-group">
+        <label>{{ localize "DND5E.ShortRestSelect" }}</label>
+        <div class="form-fields">
+            {{#select denomination}}
+            {{#each availableHD as |num denom|}}
+                <div class="hit-dice-field">
+                    <label class="denom">{{denom}}</label>
+                    <select class="hit-dice-selector" data-denom="{{denom}}" id="{{denom}}">
+                        {{#timesInclusive num.total}}
+                            <option
+                                {{#when this 'gt' num.available}}disabled{{/when}}
+                                {{#when this 'eq' 0}}selected{{/when}}
+                                value="{{this}}">{{this}}</option>
+                        {{/timesInclusive}}
+                    </select>
+                    <label>/ {{num.total}} (remaining: {{num.available}})</label>
+                </div>
+            {{/each}}
+            {{/select}}
+        </div>
+    </div>
+
+    <div class="dialog-buttons">
+        <button class="dialog-button" id="rest">
+            <i class="fas fa-bed"></i>
+            Rest
+        </button>
+    </div>
+</form>
