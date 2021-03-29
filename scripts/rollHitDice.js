@@ -14,7 +14,7 @@ export default async function rollHitDice(actor, denomination, amount) {
 	}
 
 	// Prepare roll data
-	const hitDiceFormula = `${amount}${denomination} + @abilities.con.mod`;
+	const hitDiceFormula = `${amount}${denomination} + @abilities.con.mod * ${amount}`;
 
 	const roll = new Roll(hitDiceFormula, actor.data.data);
 	roll.roll();
