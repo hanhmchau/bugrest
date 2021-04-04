@@ -7,7 +7,8 @@ export class ModuleSettings {
 
 	static registerSettings() {
         game.settings.register(this.MODULE_NAME, ModuleOptions.BIG_REST, this._buildConfig(ModuleOptions.BIG_REST, {
-            default: true
+            default: true,
+            scope: "world"
         }));
 	}
 
