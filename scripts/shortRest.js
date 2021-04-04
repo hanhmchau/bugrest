@@ -35,7 +35,6 @@ async function rest({ totalHitDiceSpent, totalHeal }) {
 	let srMessage = "DND5E.ShortRestResultShort";
 	if (totalHitDiceSpent !== 0 && totalHeal !== 0) srMessage = "DND5E.ShortRestResult";
 
-	console.warn(totalHitDiceSpent, totalHeal);
 	// Create a chat message
 	ChatMessage.create({
 		user: game.user._id,
