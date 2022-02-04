@@ -69,11 +69,8 @@ export default class ShortRestDialog extends Dialog {
 				totalHeal += roll.total;
 			}
 		}
-		await this.dialogData.callback({
-			totalHitDiceSpent,
-			totalHeal
-        });
-        this.render();
+		await this.dialogData.callback(false, false, -totalHitDiceSpent, totalHeal);
+		this.render();
 	}
 
 	_getAvailableHitDiceObject(hitDiceMap) {
@@ -87,19 +84,19 @@ export default class ShortRestDialog extends Dialog {
 
 	_getHitDiceMap() {
 		const map = new Map();
-		this.actor.data.items.forEach((item) => {
-			if (item.type === "class") {
-				const d = item.data;
-				const denom = d.hitDice || "d6";
-				const total = parseInt(d.levels || 1);
-				const available = total - parseInt(d.hitDiceUsed || 0);
-				const value = map.get(denom) || { total: 0, available: 0 };
-				map.set(denom, {
-					total: value.total + total,
-					available: value.available + available
-				});
-			}
-		});
+		const classes = this.actor.data.data.classes;
+		console.warn(this.actor.data.data.classes);
+		for (const className in classes) {
+			const cls = classes[className];
+			const denom = cls.hitDice || "d6";
+			const total = parseInt(cls.levels || 1);
+			const available = total - parseInt(cls.hitDiceUsed || 0);
+			const value = map.get(denom) || { total: 0, available: 0 };
+			map.set(denom, {
+				total: value.total + total,
+				available: value.available + available
+			});
+		}
 		return map;
 	}
 

@@ -2,8 +2,8 @@
 
 import { libWrapper } from "./lib/libwrapper.js";
 import shortRest from "./scripts/shortRest.js";
-import longRest from "./scripts/longRest.js";
-import { ModuleSettings, ModuleOptions } from './scripts/settings.js';
+import getRestHitDiceRecovery from "./scripts/getRestHitDiceRecovery.js";
+import { ModuleSettings, ModuleOptions } from "./scripts/settings.js";
 
 Hooks.on("setup", () => {
 	ModuleSettings.registerSettings();
@@ -11,7 +11,7 @@ Hooks.on("setup", () => {
 	libWrapper.register("bugrest", "CONFIG.Actor.entityClass.prototype.shortRest", shortRest, "OVERRIDE");
 
 	if (ModuleSettings.getSetting(ModuleOptions.BIG_REST)) {
-		libWrapper.register("bugrest", "CONFIG.Actor.entityClass.prototype.longRest", longRest);
+		libWrapper.register("bugrest", "CONFIG.Actor.entityClass.prototype._getRestHitDiceRecovery", getRestHitDiceRecovery, "OVERRIDE");
 	}
 
 	Handlebars.registerHelper("timesInclusive", function (n, block) {
