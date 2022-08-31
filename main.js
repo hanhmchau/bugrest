@@ -8,10 +8,10 @@ import { ModuleSettings, ModuleOptions } from "./scripts/settings.js";
 Hooks.on("setup", () => {
 	ModuleSettings.registerSettings();
 
-	libWrapper.register("bugrest", "CONFIG.Actor.entityClass.prototype.shortRest", shortRest, "OVERRIDE");
+	libWrapper.register("bugrest", "CONFIG.Actor.documentClass.prototype.shortRest", shortRest, "OVERRIDE");
 
 	if (ModuleSettings.getSetting(ModuleOptions.BIG_REST)) {
-		libWrapper.register("bugrest", "CONFIG.Actor.entityClass.prototype._getRestHitDiceRecovery", getRestHitDiceRecovery, "OVERRIDE");
+		libWrapper.register("bugrest", "CONFIG.Actor.documentClass.prototype._getRestHitDiceRecovery", getRestHitDiceRecovery, "OVERRIDE");
 	}
 
 	Handlebars.registerHelper("timesInclusive", function (n, block) {

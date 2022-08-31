@@ -84,10 +84,11 @@ export default class ShortRestDialog extends Dialog {
 
 	_getHitDiceMap() {
 		const map = new Map();
-		const classes = this.actor.data.data.classes;
-		console.warn(this.actor.data.data.classes);
+		const classes = this.actor.classes;
 		for (const className in classes) {
-			const cls = classes[className];
+			console.warn(classes);
+			console.warn(classes[className])
+			const cls = classes[className].data.data;
 			const denom = cls.hitDice || "d6";
 			const total = parseInt(cls.levels || 1);
 			const available = total - parseInt(cls.hitDiceUsed || 0);
